@@ -76,7 +76,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     isLoading = true
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            val response = retrofitService.money(
+                            val response = retrofitService.getMoney(
                                 apiKey = "fb2e294992766ce64e11aa61",
                                 base = "USD"
                             )
@@ -92,8 +92,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                 Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                                 isLoading = false
                             }
-                        }
-                    }
+                        } }
                 } else {
                     Toast.makeText(context, "Por favor, ingresa un valor válido", Toast.LENGTH_SHORT).show()
                 }

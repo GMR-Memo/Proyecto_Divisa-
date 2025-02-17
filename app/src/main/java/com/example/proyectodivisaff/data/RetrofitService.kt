@@ -8,12 +8,21 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitService {
+    // Para la Activity (corrutinas)
     @GET("v6/{apiKey}/latest/{base}")
-    suspend fun money(
-        @Path("apiKey") apikey: String,
+    suspend fun getMoney(
+        @Path("apiKey") apiKey: String,
         @Path("base") base: String
-    ):ExchangeRateResponse
-    }
+    ): ExchangeRateResponse
+
+    // Para el Worker (síncrono con .execute())
+    @GET("v6/{apiKey}/latest/{base}")
+    fun getLatestRates(
+        @Path("apiKey") apiKey: String,
+        @Path("base") base: String
+    ): retrofit2.Call<ExchangeRateResponse>
+
+}
 
 //object retrofit_service{
   //  fun makeRetrofitService():RetrofitService{
